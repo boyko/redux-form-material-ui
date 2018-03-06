@@ -1,6 +1,6 @@
 {
   "name": "redux-form-material-ui",
-  "version": "4.3.3",
+  "version": "5.0.0-beta.2",
   "description": "An adapter between Redux Form and Material UI components",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -74,16 +74,14 @@
     "webpack": "^4.1.0"
   },
   "peerDependencies": {
-    "material-ui": "^0.19.0 || ^0.20.0 || 1",
-    "react": "^15.0.0 || ^16.0.0 ",
-    "redux-form": "^6.0.0 || ^7.0.0"
+    "react": "^15.0.0 || ^16.0.0",
+    "redux-form": "7"
   },
   "files": [
     "README.md",
     "lib",
     "es",
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "nyc": {
     "include": [

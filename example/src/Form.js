@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { MenuItem } from 'material-ui/Menu';
 import { InputLabel } from 'material-ui/Input';
 import Radio from 'material-ui/Radio';
@@ -11,15 +11,15 @@ import {
   RadioGroup,
   Select,
   TextField,
-  Switch
-} from 'redux-form-material-ui'
+  Switch,
+} from 'redux-form-material-ui';
 
 // validation functions
-const required = value => (value == null ? 'Required' : undefined)
+const required = value => (value == null ? 'Required' : undefined);
 const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? 'Invalid email'
-    : undefined
+    : undefined;
 
 class Form extends Component {
   componentDidMount() {
@@ -29,10 +29,10 @@ class Form extends Component {
     //   .focus() // on TextField
   }
 
-  saveRef = ref => (this.ref = ref)
+  saveRef = ref => (this.ref = ref);
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+    const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
@@ -57,8 +57,10 @@ class Form extends Component {
         </div>
         <div>
           <Field name="delivery" component={RadioGroup}>
-            <FormControlLabel value="pickup" control={<Field name="thinCrust" component={Radio} /> } label="Pickup" />
-            <FormControlLabel value="delivery" control={<Field name="thinCrust" component={Radio} /> } label="Delivery" />
+            {/*            <FormControlLabel value="pickup" control={<Field name="thinCrust" component={Radio} /> } label="Pickup" />
+            <FormControlLabel value="delivery" control={<Field name="thinCrust" component={Radio} /> } label="Delivery" />*/}
+            <FormControlLabel value="pickup" control={<Radio />} label="Pickup" />
+            <FormControlLabel value="delivery" control={<Radio />} label="Delivery" />
           </Field>
         </div>
         <div>
@@ -78,16 +80,16 @@ class Form extends Component {
           </FormControl>
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="thinCrust" component={Switch} /> } label="Thin Chrust" />
+          <FormControlLabel control={<Field name="thinCrust" component={Switch} />} label="Thin Chrust" />
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="pepperoni" component={Checkbox} /> } label="Pepperoni" />
+          <FormControlLabel control={<Field name="pepperoni" component={Checkbox} />} label="Pepperoni" />
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="mushrooms" component={Checkbox} /> } label="Mushrooms" />
+          <FormControlLabel control={<Field name="mushrooms" component={Checkbox} />} label="Mushrooms" />
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="peppers" component={Checkbox} /> } label="Peppers" />
+          <FormControlLabel control={<Field name="peppers" component={Checkbox} />} label="Peppers" />
         </div>
         <div>
           <Field
@@ -95,7 +97,7 @@ class Form extends Component {
             component={TextField}
             placeholder="Notes"
             label="Notes"
-            multiLine={true}
+            multiline={true}
             rows={4}
           />
         </div>
@@ -112,15 +114,15 @@ class Form extends Component {
           </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
-const selector = formValueSelector('example')
+const selector = formValueSelector('example');
 
 Form = connect(state => ({
-  numPizzas: selector(state, 'pizzas')
-}))(Form)
+  numPizzas: selector(state, 'pizzas'),
+}))(Form);
 
 Form = reduxForm({
   form: 'example',
@@ -128,9 +130,8 @@ Form = reduxForm({
     delivery: 'delivery',
     name: 'Jane Doe',
     cheese: 'Cheddar',
-    thinCrust: true,
-    pizzas: 1
-  }
-})(Form)
+    pizzas: 1,
+  },
+})(Form);
 
-export default Form
+export default Form;

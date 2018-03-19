@@ -1,6 +1,6 @@
 {
   "name": "redux-form-material-ui",
-  "version": "5.0.0-beta.2",
+  "version": "5.0.0-beta.4",
   "description": "An adapter between Redux Form and Material UI components",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -9,7 +9,7 @@
     "url": "https://github.com/erikras/redux-form-material-ui"
   },
   "scripts": {
-    "build": "npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build": "bash link.sh && npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/redux-form-material-ui.js",
@@ -49,8 +49,8 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "codecov.io": "^0.1.6",
-    "cross-env": "^5.1.3",
-    "eslint": "^4.18.2",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-import": "^2.9.0",
@@ -62,16 +62,16 @@
     "jsdom": "^11.6.2",
     "lodash.noop": "^3.0.1",
     "material-ui": "^1.0.0-beta.36",
-    "mocha": "^5.0.2",
+    "mocha": "^5.0.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.4.1",
+    "nyc": "^11.6.0",
     "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-tap-event-plugin": "^3.0.2",
     "rimraf": "^2.6.2",
-    "webpack": "^4.1.0"
+    "webpack": "^4.1.1"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
@@ -101,6 +101,10 @@
   ],
   "dependencies": {
     "classnames": "^2.2.5",
-    "react-icons": "^2.2.7"
+    "libphonenumber-js": "^1.1.4",
+    "luxon": "^0.5.8",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "react-icons": "^2.2.7",
+    "react-select": "^1.2.1"
   }
 }

@@ -4,18 +4,18 @@ var webpack = require('webpack');
 var config = {
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
-    ]
+      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ },
+    ],
   },
   output: {
     library: 'ReduxFormMaterialUi',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+  ],
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -25,10 +25,10 @@ if (process.env.NODE_ENV === 'production') {
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
-        warnings: false
-      }
-    })
+        warnings: false,
+      },
+    }),
   );
 }
 
-module.exports = config
+module.exports = config;

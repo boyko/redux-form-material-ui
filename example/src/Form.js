@@ -14,6 +14,8 @@ import {
   Switch,
 } from 'redux-form-material-ui';
 
+import AutocompleteInput from 'redux-form-material-ui/ReactSelectAutocomplete';
+
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
 const email = value =>
@@ -102,6 +104,20 @@ class Form extends Component {
           />
         </div>
         <div>
+          <h2>Phone number input field</h2>
+        </div>
+        <div>
+          <h2>React select autocomplete</h2>
+          <Field
+            name="autocomplete"
+            component={AutocompleteInput}
+            options={[
+              { value: 'value1', label: 'Value 1' },
+              { value: 'value2', label: 'Value 2' },
+            ]}
+          />
+        </div>
+        <div>
           <button type="submit" disabled={submitting}>
             Submit
           </button>
@@ -131,6 +147,12 @@ Form = reduxForm({
     name: 'Jane Doe',
     cheese: 'Cheddar',
     pizzas: 1,
+    phoneNumber: '+359887576174',
+    autocomplete: 'value1',
+    // autocomplete: {
+    //   value: 'value1',
+    //   label: 'Value 1 Label',
+    // },
   },
 })(Form);
 

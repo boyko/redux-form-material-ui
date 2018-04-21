@@ -7,7 +7,7 @@ import { InputLabel } from 'material-ui/Input';
 import { withStyles } from 'material-ui/styles';
 import {
   FormControl,
-  FormHelperText,
+  // FormHelperText,
 } from 'material-ui/Form';
 import MaterialUiReactSelect from './MuiReactSelectAutocomplete';
 import styles from './styles';

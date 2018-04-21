@@ -1,18 +1,15 @@
-// @flow
-
-import type { FieldPropsType } from 'redux-form';
-
-import * as React from 'react';
+import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import Input from 'material-ui/Input';
+import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
-import ArrowDropDownIcon from 'material-ui-icons/ArrowDropDown';
-import ArrowDropUpIcon from 'material-ui-icons/ArrowDropUp';
-import ClearIcon from 'material-ui-icons/Clear';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import CancelIcon from '@material-ui/icons/Cancel';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ClearIcon from '@material-ui/icons/Clear';
 import Chip from 'material-ui/Chip';
 import Select from 'react-select';
-import styles from './styles';
+import selectStyles from './styles';
 
 class Option extends React.Component {
   handleClick = event => {
@@ -38,28 +35,32 @@ class Option extends React.Component {
   }
 }
 
-const valueRenderer = (valueProps, classes) => {
-  const { value, children, onRemove } = valueProps;
+const ValueComponent = props => {
+  const { value, children, onRemove } = props;
+
+  const onDelete = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    onRemove(value);
+  };
 
   if (onRemove) {
     return (
       <Chip
         tabIndex={-1}
         label={children}
-        className={classes.chip}
-        onDelete={event => {
-          event.preventDefault();
-          event.stopPropagation();
-          onRemove(value);
-        }}
+        // className={classes.chip}
+        deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
+        onDelete={onDelete}
       />
     );
   }
-  return (<div className="Select-value">{children}</div>);
+  return <div className="Select-value">{children}</div>;
 };
 
 function SelectWrapped(props) {
   const { classes, ...other } = props;
+
   return (
     <Select
       optionComponent={Option}
@@ -68,62 +69,42 @@ function SelectWrapped(props) {
         return arrowProps.isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
       }}
       clearRenderer={() => <ClearIcon />}
-      valueComponent={valueProps => valueRenderer(valueProps, classes)}
+      valueComponent={ValueComponent}
       {...other}
     />
   );
 }
 
-type SourceObject = {
-  label: string,
-  value: any,
-}
+class IntegrationReactSelect extends React.Component {
+  render() {
+    const { classes, value, onChange, label, multi, options, name, placeholder } = this.props;
 
-type CssClasses = {
-  wrapper?: string,
-  input?: string,
-}
-
-type Props = {
-  ...$Exact<FieldPropsType>,
-  multiple?: boolean,
-  placeholder?: string,
-  source: Array<SourceObject>,
-  classes?: CssClasses,
-}
-
-const MaterialUiReactSelect = (props: Props) => {
-  const { onChange, value, classes, source, multiple, placeholder, ...rest } = props;
-
-  let normalisedSource = source;
-  if (source.length > 0 && (typeof source[0] === 'string' || typeof source[0] === 'number')) {
-    normalisedSource = source.map(item => ({ value: item, label: item }));
+    return (
+      <div className={classes.root}>
+        <TextField
+          fullWidth
+          onChange={onChange}
+          placeholder={placeholder}
+          name="react-select-chip-label"
+          label="With label"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          InputProps={{
+            inputComponent: SelectWrapped,
+            inputProps: {
+              value,
+              classes,
+              multi,
+              simpleValue: true,
+              options,
+              joinValues: true,
+            },
+          }}
+        />
+      </div>
+    );
   }
-  return (
-    <Input
-      inputComponent={SelectWrapped}
-      value={value}
-      inputProps={{
-        value,
-        onChange,
-        classes,
-        multi: multiple,
-        placeholder,
-        instanceId: 'react-select-single',
-        id: 'react-select-single',
-        name: 'react-select-single',
-        simpleValue: true,
-        options: normalisedSource,
-        ...rest,
-      }}
-    />
-  );
-};
+}
 
-MaterialUiReactSelect.defaultProps = {
-  multiple: false,
-  placeholder: '',
-  classes: {},
-};
-
-export default withStyles(styles)(MaterialUiReactSelect);
+export default withStyles(selectStyles)(IntegrationReactSelect);

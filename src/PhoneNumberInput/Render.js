@@ -3,7 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import ReactInput from 'input-format/commonjs/ReactInput';
-import ReactSelectInput from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
+import MuiReactSelectAutocomplete from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
 import selectStyles from '../ReactSelectAutocomplete/styles';
 
 const renderCountryChoice = (props) => {
@@ -41,108 +41,115 @@ const styles = theme => ({
   // },
 });
 
-const RenderPhoneNumberField = props => {
-  const {
-    classes,
-    saveOnIcons,
-    showCountrySelect,
-    nativeExpanded,
-    disabled,
-    autoComplete,
-    selectTabIndex,
-    selectMaxItems,
-    selectAriaLabel,
-    selectCloseAriaLabel,
-    inputTabIndex,
-    style,
-    selectStyle,
-    inputStyle,
-    className,
-    inputClassName,
+class RenderPhoneNumberField extends React.Component {
+  render() {
+    const {
+      classes,
+      saveOnIcons,
+      showCountrySelect,
+      nativeExpanded,
+      nativeCountrySelect,
+      displayInitialValueAsLocalNumber,
+      countrySelectComponent,
+      onTabOut,
+      disabled,
+      autoComplete,
+      selectTabIndex,
+      selectMaxItems,
+      selectAriaLabel,
+      selectCloseAriaLabel,
+      inputTabIndex,
+      style,
+      selectStyle,
+      inputStyle,
+      className,
+      inputClassName,
 
-    error,
-    indicateInvalid,
+      error,
+      indicateInvalid,
 
-    selectComponent: SelectComponent,
-    inputComponent: InputComponent,
+      selectComponent: SelectComponent,
+      inputComponent: InputComponent,
 
-    // Extract `input_props` via "object rest spread":
-    dictionary,
-    countries,
-    country,
-    onCountryChange,
-    flags,
-    flagComponent,
-    flagsPath,
-    international,
-    internationalIcon,
-    convertToNational,
-    metadata,
+      // Extract `input_props` via "object rest spread":
+      country,
+      flags,
+      flagComponent,
+      flagsPath,
+      international,
+      internationalIcon,
+      convertToNational,
+      metadata,
 
-    country_select_is_shown,
-    label,
-    store_input_instance,
-    store_select_instance,
-    select_options,
-    set_country,
-    country_select_toggled,
-    on_country_select_tab_out,
-    parse_character,
-    format,
-    country_code,
-    can_change_country,
-    ...input_props
-  } = props;
+      country_select_is_shown,
+      label,
+      inputRef,
+      selectRef,
+      store_input_instance,
+      store_select_instance,
+      country_select_options,
+      onCountryChange,
+      selectDisabled,
+      country_select_toggled,
+      on_country_select_tab_out,
+      parse_character,
+      format,
+      country_code,
+      can_change_country,
+      parse,
+      ...input_props
+    } = this.props;
 
-  const inputProps = {
-    ...input_props,
-    parse: parse_character,
-    format,
+    const inputProps = {
+      ...input_props,
+      parse,
+      format,
+    };
+    return (
+      <div className={classes.root}>
+        <FormControl
+          error={indicateInvalid}
+          className={classes.formControl}
+        >
+          <InputLabel>{label}</InputLabel>
+          <Input
+            inputProps={inputProps}
+            inputComponent={ReactInput}
+            type="tel"
+            inputRef={inputRef}
+            disabled={disabled}
+            style={inputStyle}
+            startAdornment={
+              <InputAdornment position="start">
+                <MuiReactSelectAutocomplete
+                  ref={selectRef}
+                  value={country}
+                  options={country_select_options}
+                  onChange={onCountryChange}
+                  disabled={selectDisabled}
+                  onToggle={country_select_toggled}
+                  onTabOut={on_country_select_tab_out}
+                  valueComponent={renderCountryChoice}
+                  clearable={false}
+                  tabIndex={selectTabIndex}
+                  focusUponSelection={false}
+                  saveOnIcons={saveOnIcons}
+                  name={input_props.name ? `${input_props.name}__country` : undefined}
+                  ariaLabel={selectAriaLabel}
+                  closeAriaLabel={selectCloseAriaLabel}
+                  style={selectStyle}
+                  // className={css.fullWithMenu}
+                  inputClassName={inputClassName}
+                />
+              </InputAdornment>
+            }
+          />
+          <FormHelperText>{indicateInvalid ? error : ''}</FormHelperText>
+        </FormControl>
+      </div>
+    );
   };
-  return (
-    <div className={classes.root}>
-      <FormControl
-        error={indicateInvalid}
-        className={classes.formControl}
-      >
-        <InputLabel>{label}</InputLabel>
-        <Input
-          inputProps={inputProps}
-          inputComponent={ReactInput}
-          type="tel"
-          ref={store_input_instance}
-          disabled={disabled}
-          style={inputStyle}
-          startAdornment={
-            <InputAdornment position="start">
-              <ReactSelectInput
-                ref={store_select_instance}
-                value={country_code}
-                source={select_options}
-                onChange={set_country}
-                disabled={disabled}
-                onToggle={country_select_toggled}
-                onTabOut={on_country_select_tab_out}
-                valueComponent={renderCountryChoice}
-                clearable={false}
-                tabIndex={selectTabIndex}
-                focusUponSelection={false}
-                saveOnIcons={saveOnIcons}
-                name={input_props.name ? `${input_props.name}__country` : undefined}
-                ariaLabel={selectAriaLabel}
-                closeAriaLabel={selectCloseAriaLabel}
-                style={selectStyle}
-                // className={css.fullWithMenu}
-                inputClassName={inputClassName}
-              />
-            </InputAdornment>
-          }
-        />
-        <FormHelperText>{indicateInvalid ? error : ''}</FormHelperText>
-      </FormControl>
-    </div>
-  );
-};
+}
 
 export default withStyles(styles)(RenderPhoneNumberField);
 // export default PhoneNumberRender;

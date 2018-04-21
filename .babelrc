@@ -1,17 +1,32 @@
 {
-  "presets": ["es2015-no-commonjs", "react", "stage-2"],
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 7"
+          ],
+          "node": "6.10"
+        }
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
   "env": {
     "development": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": [
+        "react-hot-loader/babel",
+        "react-flow-props-to-prop-types"
+      ]
     },
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs", "istanbul"]
-    },
-    "production": {
-      "plugins": ["transform-es2015-modules-commonjs"]
-    },
-    "es": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": [
+        "react-flow-props-to-prop-types"
+      ]
     }
   }
 }

@@ -25,10 +25,10 @@ module.exports = {
     extensions: ['.json', '.js'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader'],
+        use: 'babel-loader',
         include: path.join(__dirname, 'src'),
       },
       {

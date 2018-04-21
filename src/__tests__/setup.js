@@ -1,5 +1,10 @@
-import { JSDOM } from 'jsdom'
+import { JSDOM } from 'jsdom';
 
-global.window = new JSDOM('<!doctype html><html><body></body></html>').window
-global.document = global.window.document
-global.navigator = global.window.navigator
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+
+Enzyme.configure({ adapter: new Adapter() });
+
+global.window = new JSDOM('<!doctype html><html><body></body></html>').window;
+global.document = global.window.document;
+global.navigator = global.window.navigator;

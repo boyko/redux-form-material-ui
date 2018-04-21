@@ -5,8 +5,9 @@ import type { FieldPropsType } from 'redux-form';
 import * as React from 'react';
 import metadata from 'libphonenumber-js/metadata.min.json';
 import Input from 'react-phone-number-input/commonjs/Input';
-import InternationalIcon from 'react-phone-number-input/commonjs/InternationalIcon';
+// import InternationalIcon from 'react-phone-number-input/commonjs/InternationalIcon';
 import RenderPhoneNumber from './Render';
+// import CountrySelect from './CountrySelect';
 
 class PhoneNumberInput extends React.Component {
   render() {
@@ -14,7 +15,6 @@ class PhoneNumberInput extends React.Component {
       <Input
         {...this.props}
         renderComponent={RenderPhoneNumber}
-        internationalIcon={<InternationalIcon />}
       />
     );
   }

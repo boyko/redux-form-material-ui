@@ -44,6 +44,7 @@
     "redbox-react": "^1.5.0",
     "rimraf": "^2.6.2",
     "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.14",
     "webpack-dev-middleware": "^3.0.0",
     "webpack-hot-middleware": "^2.21.2"
   }

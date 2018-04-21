@@ -17,7 +17,7 @@
     "clean": "rimraf dist lib",
     "lint": "eslint src",
     "prepublish": "npm run test && npm run lint && npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-register --recursive --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
+    "test": "mocha --require ./scripts/mocha.js --recursive --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
     "test:watch": "npm test -- --watch",
     "test:cov": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm test",
     "test:codecov": "cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js"
@@ -48,8 +48,11 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "codecov.io": "^0.1.6",
     "cross-env": "^5.1.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.2",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.46.1",
@@ -61,7 +64,7 @@
     "isparta": "^4.0.0",
     "jsdom": "^11.6.2",
     "lodash.noop": "^3.0.1",
-    "material-ui": "^1.0.0-beta.36",
+    "material-ui": "^1.0.0-beta.42",
     "mocha": "^5.0.2",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^11.4.1",
@@ -71,10 +74,13 @@
     "react-dom": "^16.2.0",
     "react-tap-event-plugin": "^3.0.2",
     "rimraf": "^2.6.2",
+    "sinon": "^4.5.0",
     "webpack": "^4.1.0"
   },
   "peerDependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "react": "^15.0.0 || ^16.0.0",
+    "react-select": "^1.2.1",
     "redux-form": "7"
   },
   "files": [
@@ -100,7 +106,9 @@
     }
   ],
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "classnames": "^2.2.5",
-    "react-icons": "^2.2.7"
+    "react-icons": "^2.2.7",
+    "react-select": "^1.2.1"
   }
 }

@@ -15,6 +15,7 @@ import {
 } from 'redux-form-material-ui';
 
 import AutocompleteInput from 'redux-form-material-ui/ReactSelectAutocomplete';
+import PlainAutocomplete from 'redux-form-material-ui/ReactSelectAutocomplete/MuiReactSelectAutocompleteStyled';
 
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
@@ -114,6 +115,7 @@ class Form extends Component {
             options={[
               { value: 'value1', label: 'Value 1' },
               { value: 'value2', label: 'Value 2' },
+              { value: 'value3', label: 'Value 3' },
             ]}
           />
         </div>

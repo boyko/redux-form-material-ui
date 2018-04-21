@@ -4,7 +4,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Select from 'react-select';
 
-class ReactSelectAutocompleteBasic extends React.Component {
+class MuiReactSelectAutocomplete extends React.Component {
   render() {
     const {
       classes,
@@ -19,36 +19,41 @@ class ReactSelectAutocompleteBasic extends React.Component {
       multi,
       clearable,
       noResultsText,
+      textFieldProps,
+      onBlur,
       ...rest
     } = this.props;
 
     return (
       <TextField
         fullWidth
-        value={value}
         onChange={onChange}
         placeholder={placeholder}
         InputProps={{
           inputComponent: Select,
           inputProps: {
             classes,
+            value,
             optionComponent,
             valueComponent,
             clearRenderer,
             arrowRenderer,
             noResultsText,
+            // onBlur: event => onBlur(event, event.target.value),
             name: 'react-select-single',
             instanceId: 'react-select-single',
             simpleValue: true,
             multi,
+            clearable,
             joinValues: true, // Due to bug with react-select refs
             options,
+            ...rest,
           },
         }}
-        {...rest}
+        {...textFieldProps}
       />
     );
   }
 }
 
-export default ReactSelectAutocompleteBasic;
+export default MuiReactSelectAutocomplete;

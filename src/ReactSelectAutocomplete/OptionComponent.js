@@ -1,5 +1,5 @@
-import * as React from "react";
-import { MenuItem } from "material-ui/Menu";
+import * as React from 'react';
+import { MenuItem } from 'material-ui/Menu';
 
 class Option extends React.Component {
   handleClick = event => {
@@ -16,7 +16,7 @@ class Option extends React.Component {
         onClick={this.handleClick}
         component="div"
         style={{
-          fontWeight: isSelected ? 500 : 400
+          fontWeight: isSelected ? 500 : 400,
         }}
       >
         {children}

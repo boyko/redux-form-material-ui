@@ -1,6 +1,6 @@
-import * as React from "react";
-import Chip from "material-ui/Chip";
-import CancelIcon from "@material-ui/icons/Cancel";
+import * as React from 'react';
+import Chip from 'material-ui/Chip';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const ValueComponent = props => {
   const { classes, value, children, onRemove } = props;
@@ -17,7 +17,7 @@ const ValueComponent = props => {
         tabIndex={-1}
         label={children}
         className={classes.chip}
-        deleteIcon={<CancelIcon onTouchEnd={onDelete}/>}
+        deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
         onDelete={onDelete}
       />
     );

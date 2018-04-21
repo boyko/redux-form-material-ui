@@ -37,7 +37,7 @@
     "eslint": "^4.19.1",
     "eslint-config-rackt": "^1.1.1",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-babel": "^5.0.0",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-react": "^7.7.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.3",

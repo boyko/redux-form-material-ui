@@ -1,29 +1,29 @@
 // @flow
 
-import type { FieldPropsType } from 'redux-form';
+import type { FieldPropsType } from "redux-form";
 
-import * as React from 'react';
-import metadata from 'libphonenumber-js/metadata.min.json';
-import Input from 'react-phone-number-input/commonjs/Input';
-// import InternationalIcon from 'react-phone-number-input/commonjs/InternationalIcon';
-import RenderPhoneNumber from './Render';
-// import CountrySelect from './CountrySelect';
+import * as React from "react";
+import metadata from "libphonenumber-js/metadata.min.json";
+// import Input from "react-phone-number-input/commonjs/Input";
+import createComponent from "../createComponent";
+import mapError from "../mapError";
 
-class PhoneNumberInput extends React.Component {
-  render() {
-    return (
-      <Input
-        {...this.props}
-        renderComponent={RenderPhoneNumber}
-      />
-    );
-  }
-}
+import Input from "./PhoneNumberInputTest";
 
-type Props = {
-  ...$Exact<FieldPropType>,
-  defaultCountry: string,
-}
+// class PhoneNumberInput extends React.Component {
+//   render() {
+//     return (
+//       <Input
+//         {...this.props}
+//       />
+//     );
+//   }
+// }
+//
+// type Props = {
+//   ...$Exact<FieldPropType>,
+//   defaultCountry: string,
+// }
 
 class PhoneNumberInputWithMetadata extends React.Component<Props> {
   focus() {
@@ -33,7 +33,7 @@ class PhoneNumberInputWithMetadata extends React.Component<Props> {
   render() {
     const { input, ...rest } = this.props;
     return (
-      <PhoneNumberInput
+      <Input
         {...input}
         ref={ref => {
           this.input = ref;
@@ -45,4 +45,11 @@ class PhoneNumberInputWithMetadata extends React.Component<Props> {
   }
 }
 
-export default PhoneNumberInputWithMetadata;
+
+export default createComponent(PhoneNumberInputWithMetadata, ({
+                                                                defaultValue,
+                                                                ...props
+                                                              }) => ({
+  ...mapError(props)
+}));
+

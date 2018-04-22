@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { MenuItem } from 'material-ui/Menu';
-import { InputLabel } from 'material-ui/Input';
-import Radio from 'material-ui/Radio';
-import { FormControl, FormControlLabel } from 'material-ui/Form';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Field, reduxForm, formValueSelector } from "redux-form";
+import { MenuItem } from "material-ui/Menu";
+import { InputLabel } from "material-ui/Input";
+import Radio from "material-ui/Radio";
+import { FormControl, FormControlLabel } from "material-ui/Form";
 
 import {
   Checkbox,
   RadioGroup,
   Select,
   TextField,
-  Switch,
-} from 'redux-form-material-ui';
+  Switch
+} from "redux-form-material-ui";
 
-import AutocompleteInput from 'redux-form-material-ui/ReactSelectAutocomplete';
-import PlainAutocomplete from 'redux-form-material-ui/ReactSelectAutocomplete/MuiReactSelectAutocompleteStyled';
+import AutocompleteInput from "redux-form-material-ui/ReactSelectAutocomplete";
+import PhoneNumberInput from "redux-form-material-ui/PhoneNumberInput";
 
 // validation functions
-const required = value => (value == null ? 'Required' : undefined);
+const required = value => (value == null ? "Required" : undefined);
 const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email'
+    ? "Invalid email"
     : undefined;
 
 class Form extends Component {
@@ -38,6 +38,12 @@ class Form extends Component {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
+        <div>
+          <Field
+            name="phoneNumber"
+            component={PhoneNumberInput}
+          />
+        </div>
         <div>
           <Field
             name="name"
@@ -62,8 +68,8 @@ class Form extends Component {
           <Field name="delivery" component={RadioGroup}>
             {/*            <FormControlLabel value="pickup" control={<Field name="thinCrust" component={Radio} /> } label="Pickup" />
             <FormControlLabel value="delivery" control={<Field name="thinCrust" component={Radio} /> } label="Delivery" />*/}
-            <FormControlLabel value="pickup" control={<Radio />} label="Pickup" />
-            <FormControlLabel value="delivery" control={<Radio />} label="Delivery" />
+            <FormControlLabel value="pickup" control={<Radio/>} label="Pickup"/>
+            <FormControlLabel value="delivery" control={<Radio/>} label="Delivery"/>
           </Field>
         </div>
         <div>
@@ -83,16 +89,16 @@ class Form extends Component {
           </FormControl>
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="thinCrust" component={Switch} />} label="Thin Chrust" />
+          <FormControlLabel control={<Field name="thinCrust" component={Switch}/>} label="Thin Chrust"/>
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="pepperoni" component={Checkbox} />} label="Pepperoni" />
+          <FormControlLabel control={<Field name="pepperoni" component={Checkbox}/>} label="Pepperoni"/>
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="mushrooms" component={Checkbox} />} label="Mushrooms" />
+          <FormControlLabel control={<Field name="mushrooms" component={Checkbox}/>} label="Mushrooms"/>
         </div>
         <div className="list-margin">
-          <FormControlLabel control={<Field name="peppers" component={Checkbox} />} label="Peppers" />
+          <FormControlLabel control={<Field name="peppers" component={Checkbox}/>} label="Peppers"/>
         </div>
         <div>
           <Field
@@ -106,6 +112,12 @@ class Form extends Component {
         </div>
         <div>
           <h2>Phone number input field</h2>
+          <div>
+            <Field
+              name="phoneNumber"
+              component={PhoneNumberInput}
+            />
+          </div>
         </div>
         <div>
           <h2>React select autocomplete</h2>
@@ -113,9 +125,9 @@ class Form extends Component {
             name="autocomplete"
             component={AutocompleteInput}
             options={[
-              { value: 'value1', label: 'Value 1' },
-              { value: 'value2', label: 'Value 2' },
-              { value: 'value3', label: 'Value 3' },
+              { value: "value1", label: "Value 1" },
+              { value: "value2", label: "Value 2" },
+              { value: "value3", label: "Value 3" }
             ]}
           />
         </div>
@@ -136,26 +148,26 @@ class Form extends Component {
   }
 }
 
-const selector = formValueSelector('example');
+const selector = formValueSelector("example");
 
 Form = connect(state => ({
-  numPizzas: selector(state, 'pizzas'),
+  numPizzas: selector(state, "pizzas")
 }))(Form);
 
 Form = reduxForm({
-  form: 'example',
+  form: "example",
   initialValues: {
-    delivery: 'delivery',
-    name: 'Jane Doe',
-    cheese: 'Cheddar',
+    delivery: "delivery",
+    name: "Jane Doe",
+    cheese: "Cheddar",
     pizzas: 1,
-    phoneNumber: '+359887576174',
-    autocomplete: 'value1',
+    phoneNumber: "+359887576174",
+    autocomplete: "value1"
     // autocomplete: {
     //   value: 'value1',
     //   label: 'Value 1 Label',
     // },
-  },
+  }
 })(Form);
 
 export default Form;

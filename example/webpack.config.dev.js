@@ -21,7 +21,7 @@ module.exports = {
   ],
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['.json', '.js'],
+    // extensions: ['.json', '.js'],
     alias: {
       'redux-form-material-ui': path.join(__dirname, '../src'),
     },
@@ -36,10 +36,10 @@ module.exports = {
           path.join(__dirname, '../src'),
         ],
       },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
-      },
+      // {
+      //   test: /\.json$/,
+      //   loader: 'json-loader',
+      // },
       {
         test: /\.md/,
         loaders: ['html-loader', 'markdown-loader'],

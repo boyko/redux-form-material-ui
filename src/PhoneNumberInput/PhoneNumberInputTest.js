@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { polyfill as reactLifecyclesCompat } from "react-lifecycles-compat";
 import classNames from "classnames";
 import Input, { InputAdornment, InputLabel } from "material-ui/Input";
+import CountryOption from "./CountryOption";
+import CountryValue from "./CountryValue";
 
 // Could have been `import { Select } from 'react-responsive-ui'`
 // but in that case Webpack bundles the whole `react-responsive-ui` package.
@@ -595,6 +597,11 @@ class PhoneNumberInput extends PureComponent {
 
     const InputComponent = inputComponent || (smartCaret ? SmartInput : BasicInput);
 
+    const selectOptions = country_select_options.map(opt => ({
+        value: opt.value,
+        label: opt.icon
+      })
+    );
     return (
       <div
         style={style}
@@ -607,35 +614,6 @@ class PhoneNumberInput extends PureComponent {
         {/* Country `<select/>` and phone number `<input/>` */}
         <div className="react-phone-number-input__row">
 
-          {/* Country `<select/>` */}
-          {showCountrySelect &&
-          <CountrySelectComponent
-            ref={this.store_country_select_instance}
-            value={country}
-            options={country_select_options}
-            onChange={this.on_country_selected}
-            disabled={disabled}
-            onToggle={this.on_country_select_toggle}
-            onTabOut={this.on_country_select_tab_out}
-            nativeExpanded={nativeCountrySelect}
-            concise
-            autocomplete
-            autocompleteShowAll
-            maxItems={countrySelectMaxItems}
-            tabIndex={countrySelectTabIndex}
-            focusUponSelection={false}
-            saveOnIcons={saveOnIcons}
-            name={phone_number_input_props.name ? `${phone_number_input_props.name}__country` : undefined}
-            ariaLabel={countrySelectAriaLabel}
-            closeAriaLabel={countrySelectCloseAriaLabel}
-            className={classNames("react-phone-number-input__country",
-              {
-                "react-phone-number-input__country--native-expanded": nativeCountrySelect
-              })}
-            inputClassName={inputClassName}
-            toggleClassName={countrySelectToggleClassName}/>
-          }
-
           {/* Phone number `<input/>` */}
           {!showing_country_select &&
           <Input
@@ -646,6 +624,42 @@ class PhoneNumberInput extends PureComponent {
               // onBlur: this.on_blur,
             }}
             inputComponent={InputComponent}
+            startAdornment={
+              <InputAdornment position="start">
+                {showCountrySelect &&
+                <CountrySelectComponent
+                  ref={this.store_country_select_instance}
+                  value={country}
+                  // options={country_select_options}
+                  valueComponent={CountryValue}
+                  optionComponent={CountryOption}
+                  clearable={false}
+                  options={selectOptions}
+                  onChange={this.on_country_selected}
+                  disabled={disabled}
+                  onToggle={this.on_country_select_toggle}
+                  onTabOut={this.on_country_select_tab_out}
+                  nativeExpanded={nativeCountrySelect}
+                  concise
+                  autocomplete
+                  autocompleteShowAll
+                  maxItems={countrySelectMaxItems}
+                  tabIndex={countrySelectTabIndex}
+                  focusUponSelection={false}
+                  saveOnIcons={saveOnIcons}
+                  name={phone_number_input_props.name ? `${phone_number_input_props.name}__country` : undefined}
+                  ariaLabel={countrySelectAriaLabel}
+                  closeAriaLabel={countrySelectCloseAriaLabel}
+                  className={classNames("react-phone-number-input__country",
+                    {
+                      "react-phone-number-input__country--native-expanded": nativeCountrySelect
+                    })}
+                  inputClassName={inputClassName}
+                  toggleClassName={countrySelectToggleClassName}
+                />
+                }
+              </InputAdornment>
+            }
             type="tel"
             {...phone_number_input_props}
             ref={this.store_number_input_instance}

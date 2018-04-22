@@ -39,6 +39,7 @@ class Form extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <div>
+          <h2>Phone number input field</h2>
           <Field
             name="phoneNumber"
             component={PhoneNumberInput}
@@ -109,15 +110,6 @@ class Form extends Component {
             multiline={true}
             rows={4}
           />
-        </div>
-        <div>
-          <h2>Phone number input field</h2>
-          <div>
-            <Field
-              name="phoneNumber"
-              component={PhoneNumberInput}
-            />
-          </div>
         </div>
         <div>
           <h2>React select autocomplete</h2>

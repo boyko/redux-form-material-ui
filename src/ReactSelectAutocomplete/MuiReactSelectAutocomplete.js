@@ -26,7 +26,7 @@ class MuiReactSelectAutocomplete extends React.Component {
 
     return (
       <TextField
-        fullWidth
+        classes={classes}
         onChange={onChange}
         placeholder={placeholder}
         InputProps={{

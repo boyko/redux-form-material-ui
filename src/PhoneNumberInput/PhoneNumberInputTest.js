@@ -2,21 +2,17 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { polyfill as reactLifecyclesCompat } from "react-lifecycles-compat";
+import { withStyles } from "material-ui/styles";
 import classNames from "classnames";
 import Input, { InputAdornment, InputLabel } from "material-ui/Input";
 import CountryOption from "./CountryOption";
 import CountryValue from "./CountryValue";
-
 // Could have been `import { Select } from 'react-responsive-ui'`
 // but in that case Webpack bundles the whole `react-responsive-ui` package.
-import Select from "../ReactSelectAutocomplete/MuiReactSelectAutocompleteStyled";
-
 import SmartInput from "react-phone-number-input/commonjs/SmartInput";
 import BasicInput from "react-phone-number-input/commonjs/BasicInput";
-
 import InternationalIcon from "react-phone-number-input/commonjs/InternationalIcon";
 import FlagComponent from "react-phone-number-input/commonjs/Flag";
-
 import
 {
   getPreSelectedCountry,
@@ -28,8 +24,31 @@ import
   e164
 }
   from "react-phone-number-input/commonjs/input-control";
-
 import { countries } from "react-phone-number-input/commonjs/countries";
+import Select from "../ReactSelectAutocomplete/MuiReactSelectAutocomplete";
+import ArrowRenderer from "../ReactSelectAutocomplete/ArrowRenderer";
+
+
+const _CountrySelect = (props) => (
+  <Select
+    classes={props.classes}
+    valueComponent={CountryValue}
+    optionComponent={CountryOption}
+    arrowRenderer={ArrowRenderer}
+    clearable={false}
+    {...props}
+  />
+);
+
+const selectStyles = theme => ({
+  // underline: {
+  //   "& :after": {
+  //     height: 0
+  //   }
+  // }
+});
+
+const CountrySelect = withStyles(selectStyles)(_CountrySelect);
 
 // Allows passing custom `libphonenumber-js` metadata
 // to reduce the overall bundle size.
@@ -548,6 +567,7 @@ class PhoneNumberInput extends PureComponent {
   render() {
     const
       {
+        classes,
         disabled,
         autoComplete,
         countrySelectTabIndex,
@@ -609,14 +629,39 @@ class PhoneNumberInput extends PureComponent {
           {
             "react-phone-number-input--invalid": error && indicateInvalid
           },
-          className)}>
-
+          className)}
+      >
         {/* Country `<select/>` and phone number `<input/>` */}
         <div className="react-phone-number-input__row">
-
+          {showCountrySelect &&
+          <CountrySelect
+            className={classes.countrySelectOverride}
+            ref={this.store_country_select_instance}
+            value={country}
+            options={selectOptions}
+            onChange={this.on_country_selected}
+            disabled={disabled}
+            onToggle={this.on_country_select_toggle}
+            onTabOut={this.on_country_select_tab_out}
+            nativeExpanded={nativeCountrySelect}
+            concise
+            autocomplete
+            autocompleteShowAll
+            maxItems={countrySelectMaxItems}
+            tabIndex={countrySelectTabIndex}
+            focusUponSelection={false}
+            saveOnIcons={saveOnIcons}
+            name={phone_number_input_props.name ? `${phone_number_input_props.name}__country` : undefined}
+            ariaLabel={countrySelectAriaLabel}
+            closeAriaLabel={countrySelectCloseAriaLabel}
+            inputClassName={inputClassName}
+            toggleClassName={countrySelectToggleClassName}
+          />
+          }
           {/* Phone number `<input/>` */}
           {!showing_country_select &&
           <Input
+            className={classes.phoneInputOverride}
             inputProps={{
               value: parsed_input || "",
               metadata,
@@ -624,42 +669,6 @@ class PhoneNumberInput extends PureComponent {
               // onBlur: this.on_blur,
             }}
             inputComponent={InputComponent}
-            startAdornment={
-              <InputAdornment position="start">
-                {showCountrySelect &&
-                <CountrySelectComponent
-                  ref={this.store_country_select_instance}
-                  value={country}
-                  // options={country_select_options}
-                  valueComponent={CountryValue}
-                  optionComponent={CountryOption}
-                  clearable={false}
-                  options={selectOptions}
-                  onChange={this.on_country_selected}
-                  disabled={disabled}
-                  onToggle={this.on_country_select_toggle}
-                  onTabOut={this.on_country_select_tab_out}
-                  nativeExpanded={nativeCountrySelect}
-                  concise
-                  autocomplete
-                  autocompleteShowAll
-                  maxItems={countrySelectMaxItems}
-                  tabIndex={countrySelectTabIndex}
-                  focusUponSelection={false}
-                  saveOnIcons={saveOnIcons}
-                  name={phone_number_input_props.name ? `${phone_number_input_props.name}__country` : undefined}
-                  ariaLabel={countrySelectAriaLabel}
-                  closeAriaLabel={countrySelectCloseAriaLabel}
-                  className={classNames("react-phone-number-input__country",
-                    {
-                      "react-phone-number-input__country--native-expanded": nativeCountrySelect
-                    })}
-                  inputClassName={inputClassName}
-                  toggleClassName={countrySelectToggleClassName}
-                />
-                }
-              </InputAdornment>
-            }
             type="tel"
             {...phone_number_input_props}
             ref={this.store_number_input_instance}
@@ -671,50 +680,9 @@ class PhoneNumberInput extends PureComponent {
             onKeyDown={this.on_number_key_down}
             disabled={disabled}
             autoComplete={autoComplete}
-            className={classNames
-            (
-              "rrui__input",
-              "rrui__input-element",
-              "rrui__input-field",
-              {
-                "rrui__input-field--invalid": error && indicateInvalid,
-                "rrui__input-field--disabled": disabled
-              },
-              "react-phone-number-input__phone",
-              inputClassName
-            )}/>
-          }
-
-          {/* Phone extension `<input/>` */}
-          {ext && !showing_country_select &&
-          <label className="react-phone-number-input__ext">
-            {labels && labels.ext || "ext."}
-            {React.cloneElement(ext,
-              {
-                type: ext.props.type === undefined ? "number" : ext.props.type,
-                className: classNames
-                (
-                  "rrui__input",
-                  "rrui__input-element",
-                  "rrui__input-field",
-                  {
-                    "rrui__input-field--disabled": disabled
-                  },
-                  "react-phone-number-input__ext-input",
-                  inputClassName,
-                  ext.props.className
-                )
-              })}
-          </label>
+          />
           }
         </div>
-
-        {/* Error message */}
-        {error && indicateInvalid &&
-        <div className={classNames("rrui__input-error", "react-phone-number-input__error")}>
-          {error}
-        </div>
-        }
       </div>
     );
   }
@@ -770,4 +738,13 @@ function generate_parsed_input(value, parsed_number, props) {
   return value;
 }
 
-export default reactLifecyclesCompat(PhoneNumberInput);
+const styles = theme => ({
+  countrySelectOverride: {
+    // fontSize: 10
+  },
+  phoneInputOverride: {
+    // fontSize: 10
+  }
+});
+
+export default withStyles(styles)(reactLifecyclesCompat(PhoneNumberInput));

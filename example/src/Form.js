@@ -40,10 +40,12 @@ class Form extends Component {
       <form onSubmit={handleSubmit}>
         <div>
           <h2>Phone number input field</h2>
-          <Field
-            name="phoneNumber"
-            component={PhoneNumberInput}
-          />
+          <div>
+            <Field
+              name="phoneNumber"
+              component={PhoneNumberInput}
+            />
+          </div>
         </div>
         <div>
           <Field

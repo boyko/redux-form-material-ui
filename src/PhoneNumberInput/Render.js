@@ -1,17 +1,17 @@
-import * as React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import ReactInput from 'input-format/commonjs/ReactInput';
-import MuiReactSelectAutocomplete from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
-import selectStyles from '../ReactSelectAutocomplete/styles';
+import * as React from "react";
+import { withStyles } from "material-ui/styles";
+import Input, { InputLabel, InputAdornment } from "material-ui/Input";
+import { FormControl, FormHelperText } from "material-ui/Form";
+import ReactInput from "input-format/commonjs/ReactInput";
+import MuiReactSelectAutocomplete from "../ReactSelectAutocomplete/MuiReactSelectAutocomplete";
+import selectStyles from "../ReactSelectAutocomplete/styles";
 
 const renderCountryChoice = (props) => {
   const { value } = props;
   const { iconUrl } = value;
   return (
     <img
-      style={{ width: '1rem', height: '1rem' }}
+      style={{ width: "1rem", height: "1rem" }}
       alt=""
       className="react-phone-number-input__icon"
       src={iconUrl}
@@ -22,20 +22,20 @@ const renderCountryChoice = (props) => {
 const styles = theme => ({
   ...selectStyles,
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   formControl: {
     margin: theme.spacing.unit,
-    display: 'flex',
-    flexWrap: 'nowrap',
-    flexFlow: 'row',
+    display: "flex",
+    flexWrap: "nowrap",
+    flexFlow: "row"
   },
-  '@global': {
-    '.Select-multi-value-wrapper': {
-      height: '1rem',
-    },
-  },
+  "@global": {
+    ".Select-multi-value-wrapper": {
+      height: "1rem"
+    }
+  }
   // withoutLabel: {
   //   marginTop: theme.spacing.unit * 3,
   // },
@@ -94,16 +94,17 @@ class RenderPhoneNumberField extends React.Component {
       on_country_select_tab_out,
       parse_character,
       format,
+      parse,
       country_code,
       can_change_country,
-      parse,
+      value,
       ...input_props
     } = this.props;
 
     const inputProps = {
       ...input_props,
       parse,
-      format,
+      format
     };
     return (
       <FormControl
@@ -113,11 +114,13 @@ class RenderPhoneNumberField extends React.Component {
         <InputLabel>{label}</InputLabel>
         <Input
           inputProps={inputProps}
-          inputComponent={props => <ReactInput {...props} />}
+          inputComponent={({ inputRef, ...props }) => <ReactInput ref={inputRef} {...props}/>}
           type="tel"
-          // inputRef={inputRef}
+          value={value}
+          inputRef={inputRef}
           disabled={disabled}
           style={inputStyle}
+          ref={inputRef}
           startAdornment={
             <InputAdornment position="start">
               <MuiReactSelectAutocomplete
@@ -143,7 +146,7 @@ class RenderPhoneNumberField extends React.Component {
             </InputAdornment>
           }
         />
-        <FormHelperText>{indicateInvalid ? error : ''}</FormHelperText>
+        <FormHelperText>{indicateInvalid ? error : ""}</FormHelperText>
       </FormControl>
     );
   };

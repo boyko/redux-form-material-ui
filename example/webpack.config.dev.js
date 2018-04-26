@@ -40,11 +40,6 @@ module.exports = {
       //   test: /\.json$/,
       //   loader: 'json-loader',
       // },
-      // {
-      //   test: /\.json$/,
-      //   loader: 'raw-loader',
-      //   include: [/libphonenumber-js/, /react-phone-number-input/],
-      // },
       {
         test: /\.md/,
         loaders: ['html-loader', 'markdown-loader'],

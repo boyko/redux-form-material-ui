@@ -1,12 +1,15 @@
 // @flow
 
 import type { FieldPropsType } from 'redux-form';
+import createComponent from '../createComponent';
+import mapError from '../mapError';
 
 import * as React from 'react';
-import metadata from 'libphonenumber-js/metadata.min.json';
+import metadata from 'libphonenumber-js/metadata.min';
 import Input from 'react-phone-number-input/commonjs/Input';
 // import InternationalIcon from 'react-phone-number-input/commonjs/InternationalIcon';
 import RenderPhoneNumber from './Render';
+
 // import CountrySelect from './CountrySelect';
 
 class PhoneNumberInput extends React.Component {
@@ -45,4 +48,11 @@ class PhoneNumberInputWithMetadata extends React.Component<Props> {
   }
 }
 
-export default PhoneNumberInputWithMetadata;
+export default createComponent(PhoneNumberInputWithMetadata,
+  ({
+     defaultValue,
+     ...props
+   }) => ({
+    ...mapError(props),
+  }),
+);

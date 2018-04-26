@@ -106,47 +106,45 @@ class RenderPhoneNumberField extends React.Component {
       format,
     };
     return (
-      <div className={classes.root}>
-        <FormControl
-          error={indicateInvalid}
-          className={classes.formControl}
-        >
-          <InputLabel>{label}</InputLabel>
-          <Input
-            inputProps={inputProps}
-            inputComponent={ReactInput}
-            type="tel"
-            inputRef={inputRef}
-            disabled={disabled}
-            style={inputStyle}
-            startAdornment={
-              <InputAdornment position="start">
-                <MuiReactSelectAutocomplete
-                  ref={selectRef}
-                  value={country}
-                  options={country_select_options}
-                  onChange={onCountryChange}
-                  disabled={selectDisabled}
-                  onToggle={country_select_toggled}
-                  onTabOut={on_country_select_tab_out}
-                  valueComponent={renderCountryChoice}
-                  clearable={false}
-                  tabIndex={selectTabIndex}
-                  focusUponSelection={false}
-                  saveOnIcons={saveOnIcons}
-                  name={input_props.name ? `${input_props.name}__country` : undefined}
-                  ariaLabel={selectAriaLabel}
-                  closeAriaLabel={selectCloseAriaLabel}
-                  style={selectStyle}
-                  // className={css.fullWithMenu}
-                  inputClassName={inputClassName}
-                />
-              </InputAdornment>
-            }
-          />
-          <FormHelperText>{indicateInvalid ? error : ''}</FormHelperText>
-        </FormControl>
-      </div>
+      <FormControl
+        error={indicateInvalid}
+        className={classes.formControl}
+      >
+        <InputLabel>{label}</InputLabel>
+        <Input
+          inputProps={inputProps}
+          inputComponent={props => <ReactInput {...props} />}
+          type="tel"
+          // inputRef={inputRef}
+          disabled={disabled}
+          style={inputStyle}
+          startAdornment={
+            <InputAdornment position="start">
+              <MuiReactSelectAutocomplete
+                ref={selectRef}
+                value={country}
+                options={country_select_options}
+                onChange={onCountryChange}
+                disabled={selectDisabled}
+                onToggle={country_select_toggled}
+                onTabOut={on_country_select_tab_out}
+                valueComponent={renderCountryChoice}
+                clearable={false}
+                tabIndex={selectTabIndex}
+                focusUponSelection={false}
+                saveOnIcons={saveOnIcons}
+                name={input_props.name ? `${input_props.name}__country` : undefined}
+                ariaLabel={selectAriaLabel}
+                closeAriaLabel={selectCloseAriaLabel}
+                style={selectStyle}
+                // className={css.fullWithMenu}
+                inputClassName={inputClassName}
+              />
+            </InputAdornment>
+          }
+        />
+        <FormHelperText>{indicateInvalid ? error : ''}</FormHelperText>
+      </FormControl>
     );
   };
 }

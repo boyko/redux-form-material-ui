@@ -15,7 +15,7 @@ import {
 } from 'redux-form-material-ui';
 
 import AutocompleteInput from 'redux-form-material-ui/ReactSelectAutocomplete';
-import PlainAutocomplete from 'redux-form-material-ui/ReactSelectAutocomplete/MuiReactSelectAutocompleteStyled';
+import PhoneNumberInput from 'redux-form-material-ui/PhoneNumberInput';
 
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
@@ -106,6 +106,10 @@ class Form extends Component {
         </div>
         <div>
           <h2>Phone number input field</h2>
+          <Field
+            name="phoneNumber"
+            component={PhoneNumberInput}
+          />
         </div>
         <div>
           <h2>React select autocomplete</h2>

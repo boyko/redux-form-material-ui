@@ -1,18 +1,18 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
-import { polyfill as reactLifecyclesCompat } from "react-lifecycles-compat";
-import { withStyles } from "material-ui/styles";
-import classNames from "classnames";
-import Input, { InputAdornment, InputLabel } from "material-ui/Input";
-import CountryOption from "./CountryOption";
-import CountryValue from "./CountryValue";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import { polyfill as reactLifecyclesCompat } from 'react-lifecycles-compat';
+import { withStyles } from 'material-ui/styles';
+import classNames from 'classnames';
+import Input, { InputAdornment, InputLabel } from 'material-ui/Input';
+import CountryOption from './CountryOption';
+import CountryValue from './CountryValue';
 // Could have been `import { Select } from 'react-responsive-ui'`
 // but in that case Webpack bundles the whole `react-responsive-ui` package.
-import SmartInput from "react-phone-number-input/commonjs/SmartInput";
-import BasicInput from "react-phone-number-input/commonjs/BasicInput";
-import InternationalIcon from "react-phone-number-input/commonjs/InternationalIcon";
-import FlagComponent from "react-phone-number-input/commonjs/Flag";
+import SmartInput from 'react-phone-number-input/commonjs/SmartInput';
+import BasicInput from 'react-phone-number-input/commonjs/BasicInput';
+import InternationalIcon from 'react-phone-number-input/commonjs/InternationalIcon';
+import FlagComponent from 'react-phone-number-input/commonjs/Flag';
 import
 {
   getPreSelectedCountry,
@@ -21,12 +21,12 @@ import
   generateNationalNumberDigits,
   migrateParsedInputForNewCountry,
   getCountryForParsedInput,
-  e164
+  e164,
 }
-  from "react-phone-number-input/commonjs/input-control";
-import { countries } from "react-phone-number-input/commonjs/countries";
-import Select from "../ReactSelectAutocomplete/MuiReactSelectAutocomplete";
-import ArrowRenderer from "../ReactSelectAutocomplete/ArrowRenderer";
+  from 'react-phone-number-input/commonjs/input-control';
+import { countries } from 'react-phone-number-input/commonjs/countries';
+import Select from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
+import ArrowRenderer from '../ReactSelectAutocomplete/ArrowRenderer';
 
 
 const _CountrySelect = (props) => (
@@ -209,9 +209,9 @@ class PhoneNumberInput extends PureComponent {
       metadata: PropTypes.shape
       ({
         country_calling_codes: PropTypes.object.isRequired,
-        countries: PropTypes.object.isRequired
+        countries: PropTypes.object.isRequired,
       })
-        .isRequired
+        .isRequired,
     };
 
   static defaultProps =
@@ -220,7 +220,7 @@ class PhoneNumberInput extends PureComponent {
       disabled: false,
 
       // Remember (and autofill) the value as a phone number.
-      autoComplete: "tel",
+      autoComplete: 'tel',
 
       // Include all countries.
       countries,
@@ -229,13 +229,13 @@ class PhoneNumberInput extends PureComponent {
       flagComponent: FlagComponent,
 
       // By default use icons from `flag-icon-css` github repo.
-      flagsPath: "https://lipis.github.io/flag-icon-css/flags/4x3/",
+      flagsPath: 'https://lipis.github.io/flag-icon-css/flags/4x3/',
 
       // Default "International" country `<select/>` option icon (globe).
       internationalIcon: (
         <div
-          className={classNames("react-phone-number-input__icon", "react-phone-number-input__icon--international")}>
-          <InternationalIcon/>
+          className={classNames('react-phone-number-input__icon', 'react-phone-number-input__icon--international')}>
+          <InternationalIcon />
         </div>
       ),
 
@@ -267,7 +267,7 @@ class PhoneNumberInput extends PureComponent {
       // Set to `false` to use `inputComponent={BasicInput}`
       // instead of `input-format`'s `<ReactInput/>`.
       // Is `true` by default.
-      smartCaret: true
+      smartCaret: true,
     };
 
   constructor(props) {
@@ -280,7 +280,7 @@ class PhoneNumberInput extends PureComponent {
         countries,
         labels,
         international,
-        metadata
+        metadata,
       }
         = this.props;
 
@@ -292,7 +292,7 @@ class PhoneNumberInput extends PureComponent {
       country,
       countries,
       international,
-      metadata
+      metadata,
     );
 
     this.state =
@@ -320,7 +320,7 @@ class PhoneNumberInput extends PureComponent {
         // If the `value` property changed externally
         // then it won't be equal to state `value`
         // in which case `parsed_input` and `country` get updated.
-        value
+        value,
       };
   }
 
@@ -331,7 +331,7 @@ class PhoneNumberInput extends PureComponent {
     const
       {
         parsed_input: old_parsed_input,
-        country: old_country
+        country: old_country,
       }
         = this.state;
 
@@ -343,7 +343,7 @@ class PhoneNumberInput extends PureComponent {
       old_parsed_input,
       old_country,
       new_country,
-      metadata
+      metadata,
     );
 
     const new_value = e164(new_parsed_input, new_country, metadata);
@@ -353,7 +353,7 @@ class PhoneNumberInput extends PureComponent {
         country: new_country,
         hasChangedCountry: true,
         parsed_input: new_parsed_input,
-        value: new_value
+        value: new_value,
       },
       () => {
         // Update the new `value` property.
@@ -395,7 +395,7 @@ class PhoneNumberInput extends PureComponent {
         onChange,
         countries,
         international,
-        metadata
+        metadata,
       }
         = this.props;
 
@@ -405,14 +405,14 @@ class PhoneNumberInput extends PureComponent {
       // If the phone number being input is an international one
       // then tries to derive the country from the phone number.
       // (regardless of whether there's any country currently selected)
-      if (parsed_input[0] === "+") {
+      if (parsed_input[0] === '+') {
         country = getCountryForParsedInput
         (
           parsed_input,
           country,
           countries,
           international,
-          metadata
+          metadata,
         );
       }
       // If this `onChange()` event was triggered
@@ -420,7 +420,7 @@ class PhoneNumberInput extends PureComponent {
       // then force-prepend a `+` sign if the phone number
       // `<input/>` value isn't in international format.
       else if (!country) {
-        parsed_input = "+" + parsed_input;
+        parsed_input = '+' + parsed_input;
       }
     }
 
@@ -431,7 +431,7 @@ class PhoneNumberInput extends PureComponent {
     ({
         parsed_input,
         value,
-        country
+        country,
       },
       // Update the new `value` property.
       // Doing it after the `state` has been updated
@@ -462,8 +462,8 @@ class PhoneNumberInput extends PureComponent {
         target:
           {
             ...event.target,
-            value
-          }
+            value,
+          },
       };
 
     // For `redux-form` event detection.
@@ -477,7 +477,7 @@ class PhoneNumberInput extends PureComponent {
   // When country `<select/>` is toggled.
   on_country_select_toggle = (show) => {
     this.setState({
-      showing_country_select: show
+      showing_country_select: show,
     });
   };
 
@@ -507,8 +507,8 @@ class PhoneNumberInput extends PureComponent {
         value,
         props:
           {
-            country: old_default_country
-          }
+            country: old_default_country,
+          },
       }
         = state;
 
@@ -516,7 +516,7 @@ class PhoneNumberInput extends PureComponent {
       {
         metadata,
         country: new_default_country,
-        value: new_value
+        value: new_value,
       }
         = props;
 
@@ -540,7 +540,7 @@ class PhoneNumberInput extends PureComponent {
     if (new_default_country !== old_default_country && !hasChangedCountry && !value && !new_value) {
       return {
         ...new_state,
-        country: new_default_country
+        country: new_default_country,
       };
     }
     // If a new `value` is set externally.
@@ -553,7 +553,7 @@ class PhoneNumberInput extends PureComponent {
         ...new_state,
         parsed_input: generate_parsed_input(new_value, parsed_number, props),
         value: new_value,
-        country: new_value ? parsed_number.country : country
+        country: new_value ? parsed_number.country : country,
       };
     }
     else if (new_state.country_select_options) {
@@ -611,7 +611,7 @@ class PhoneNumberInput extends PureComponent {
         country,
         showing_country_select,
         country_select_options,
-        parsed_input
+        parsed_input,
       }
         = this.state;
 
@@ -619,15 +619,15 @@ class PhoneNumberInput extends PureComponent {
 
     const selectOptions = country_select_options.map(opt => ({
         value: opt.value,
-        label: opt.icon
-      })
+        label: opt.icon,
+      }),
     );
     return (
       <div
         style={style}
-        className={classNames("react-phone-number-input",
+        className={classNames('react-phone-number-input',
           {
-            "react-phone-number-input--invalid": error && indicateInvalid
+            'react-phone-number-input--invalid': error && indicateInvalid,
           },
           className)}
       >
@@ -663,9 +663,9 @@ class PhoneNumberInput extends PureComponent {
           <Input
             className={classes.phoneInputOverride}
             inputProps={{
-              value: parsed_input || "",
+              value: parsed_input || '',
               metadata,
-              onChange: this.on_change
+              onChange: this.on_change,
               // onBlur: this.on_blur,
             }}
             inputComponent={InputComponent}
@@ -674,7 +674,7 @@ class PhoneNumberInput extends PureComponent {
             ref={this.store_number_input_instance}
             metadata={metadata}
             country={country}
-            value={parsed_input || ""}
+            value={parsed_input || ''}
             onChange={this.on_change}
             onBlur={this.on_blur}
             onKeyDown={this.on_number_key_down}
@@ -698,7 +698,7 @@ function generate_country_select_options(props) {
       flagsPath,
       flagComponent: FlagComponent,
       international,
-      internationalIcon
+      internationalIcon,
     }
       = props;
 
@@ -706,14 +706,14 @@ function generate_country_select_options(props) {
   (
     countries,
     labels,
-    international
+    international,
   )
     .map(({ value, label }) =>
       ({
         value,
         label,
         icon: value ? () => <FlagComponent country={value} flags={flags}
-                                           flagsPath={flagsPath}/> : internationalIcon
+                                           flagsPath={flagsPath} /> : internationalIcon,
       }));
 }
 
@@ -721,7 +721,7 @@ function generate_parsed_input(value, parsed_number, props) {
   const
     {
       displayInitialValueAsLocalNumber,
-      metadata
+      metadata,
     }
       = props;
 
@@ -744,7 +744,7 @@ const styles = theme => ({
   },
   phoneInputOverride: {
     // fontSize: 10
-  }
+  },
 });
 
 export default withStyles(styles)(reactLifecyclesCompat(PhoneNumberInput));

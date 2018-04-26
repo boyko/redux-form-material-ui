@@ -1,6 +1,6 @@
-import React from "react";
-import Input from "material-ui/Input";
-import { ReactInput } from "input-format";
+import React from 'react';
+import Input from 'material-ui/Input';
+import { ReactInput } from 'input-format';
 
 const parse = value => value;
 const format = parse;
@@ -23,7 +23,7 @@ const Test = props => {
     <Input
       inputComponent={TestInputComponent}
       inputProps={{
-        value: "testValue"
+        value: 'testValue',
       }}
     />
   );

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import { withStyles } from '@material-ui/core/styles';
+import Input, { InputLabel, InputAdornment } from '@material-ui/core/Input';
+import { FormControl, FormHelperText } from '@material-ui/core/Form';
 import ReactInput from 'input-format/commonjs/ReactInput';
 import MuiReactSelectAutocomplete from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
 import selectStyles from '../ReactSelectAutocomplete/styles';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MenuItem } from 'material-ui/Menu';
+import { MenuItem } from '@material-ui/core/Menu';
 
 class CountryOption extends React.Component {
   handleClick = event => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { withStyles } from "material-ui/styles";
-// import Typography from 'material-ui/Typography';
+// import Typography from '@material-ui/core/Typography';
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ClearIcon from "@material-ui/icons/Clear";

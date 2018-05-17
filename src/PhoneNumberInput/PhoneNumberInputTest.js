@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { polyfill as reactLifecyclesCompat } from 'react-lifecycles-compat';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import Input, { InputAdornment, InputLabel } from 'material-ui/Input';
+import Input, { InputAdornment, InputLabel } from '@material-ui/core/Input';
 import CountryOption from './CountryOption';
 import CountryValue from './CountryValue';
 // Could have been `import { Select } from 'react-responsive-ui'`

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import ReactSelectInput from '../ReactSelectAutocomplete/MuiReactSelectAutocomplete';
 
 const styles = theme => ({

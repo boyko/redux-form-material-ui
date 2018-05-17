@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import Select from 'react-select';
 
 class MuiReactSelectAutocomplete extends React.Component {

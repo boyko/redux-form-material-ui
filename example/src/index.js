@@ -4,7 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Code, Markdown, Values } from 'redux-form-website-template';
 import logger from 'redux-logger';
 

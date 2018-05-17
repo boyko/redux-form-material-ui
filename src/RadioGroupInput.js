@@ -3,14 +3,14 @@
 // import type { FieldPropsType } from 'redux-form';
 
 import * as React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import {
   FormLabel,
   FormControl,
   FormControlLabel,
   FormHelperText,
-} from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+} from '@material-ui/core/Form';
+import Radio, { RadioGroup } from '@material-ui/core/Radio';
 
 // type Props = {
 //   ...FieldPropsType,

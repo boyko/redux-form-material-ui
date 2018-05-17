@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Chip from 'material-ui/Chip';
+import Chip from '@material-ui/core/Chip';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 const ValueComponent = props => {

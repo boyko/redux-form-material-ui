@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import Button from 'material-ui/Button';
-// import IconButton from 'material-ui/IconButton';
+import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
 import CheckIcon from 'react-icons/lib/md/check';
 import SaveIcon from 'react-icons/lib/md/save';
-import { CircularProgress } from 'material-ui/Progress';
-import { withStyles } from 'material-ui/styles';
-import green from 'material-ui/colors/green';
-import red from 'material-ui/colors/red';
+import { CircularProgress } from '@material-ui/core/Progress';
+import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 // type cssType = {
 //   root: string;

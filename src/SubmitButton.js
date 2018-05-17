@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // import IconButton from '@material-ui/core/IconButton';
 import CheckIcon from 'react-icons/lib/md/check';
 import SaveIcon from 'react-icons/lib/md/save';
-import { CircularProgress } from '@material-ui/core/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';

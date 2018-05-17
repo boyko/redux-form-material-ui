@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import { polyfill as reactLifecyclesCompat } from 'react-lifecycles-compat';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import Input, { InputAdornment, InputLabel } from '@material-ui/core/Input';
+import Input from '@material-ui/core/Input';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import InputLabel from '@material-ui/core/InputLabel';
 import CountryOption from './CountryOption';
 import CountryValue from './CountryValue';
 // Could have been `import { Select } from 'react-responsive-ui'`

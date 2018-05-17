@@ -4,13 +4,12 @@
 
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  FormLabel,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-} from '@material-ui/core/Form';
-import Radio, { RadioGroup } from '@material-ui/core/Radio';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 // type Props = {
 //   ...FieldPropsType,

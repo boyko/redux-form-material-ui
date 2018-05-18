@@ -93,6 +93,7 @@
     "@material-ui/core": "^1.0.0",
     "@material-ui/icons": "^1.0.0",
     "react": "^15.0.0 || ^16.0.0",
+    "react-phone-number-input": "^1.0.11",
     "react-select": "^1.2.1",
     "redux-form": "7"
   },

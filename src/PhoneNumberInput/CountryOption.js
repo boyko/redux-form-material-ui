@@ -1,5 +1,5 @@
-import * as React from "react";
-import { MenuItem } from "material-ui/Menu";
+import * as React from 'react';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class CountryOption extends React.Component {
   handleClick = event => {
@@ -10,7 +10,7 @@ class CountryOption extends React.Component {
     const { option, isFocused, isSelected, onFocus } = this.props;
     {/*<img src={`https://lipis.github.io/flag-icon-css/flags/4x3/${value.value}`}/>*/
     }
-    const flagCode = option.value ? option.value.toLowerCase() : "international";
+    const flagCode = option.value ? option.value.toLowerCase() : 'international';
     return (
       <MenuItem
         onFocus={onFocus}
@@ -18,11 +18,11 @@ class CountryOption extends React.Component {
         onClick={this.handleClick}
         component="div"
         style={{
-          fontWeight: isSelected ? 500 : 400
+          fontWeight: isSelected ? 500 : 400,
         }}
       >
-        <div style={{ maxWidth: "100%" }}>
-          <img src={`https://lipis.github.io/flag-icon-css/flags/4x3/${flagCode}.svg`}/>
+        <div style={{ maxWidth: '100%' }}>
+          <img src={`https://lipis.github.io/flag-icon-css/flags/4x3/${flagCode}.svg`} />
         </div>
       </MenuItem>
     );

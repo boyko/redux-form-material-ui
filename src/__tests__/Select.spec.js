@@ -1,6 +1,6 @@
 import expect from 'expect'
 import expectJsx from 'expect-jsx'
-import Select from 'material-ui/Select'
+import Select from '@material-ui/core/Select'
 import React from 'react'
 import ReduxFormMaterialUISelect from '../Select'
 

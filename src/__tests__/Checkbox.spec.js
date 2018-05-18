@@ -1,7 +1,7 @@
 import expect from 'expect';
 import expectJsx from 'expect-jsx';
 import noop from 'lodash.noop';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import React from 'react';
 import ReduxFormMaterialUICheckbox from '../Checkbox';
 

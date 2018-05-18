@@ -3,7 +3,7 @@
 import type { FieldPropsType } from 'redux-form';
 
 import * as React from 'react';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import { DateTime } from 'luxon';
 
 // TODO: NB! Remove dependency on react-toolbox!

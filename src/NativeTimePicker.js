@@ -4,7 +4,7 @@ import type { FieldPropsType } from 'redux-form';
 
 import * as React from 'react';
 import { DateTime } from 'luxon';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 
 type Props = {
   ...$Exact<fieldProps>,

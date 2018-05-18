@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import Button from 'material-ui/Button';
-// import IconButton from 'material-ui/IconButton';
+import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from 'react-icons/lib/md/close';
 import DeleteIcon from 'react-icons/lib/md/delete';
 import SubmitButton from './SubmitButton';

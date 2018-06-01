@@ -22,6 +22,7 @@ const defaultProps = {
   handleDelete: null,
   error: null,
   handleClose: null,
+  submitButtonText: 'Save',
 };
 
 const FormControls = (props) => {
@@ -35,32 +36,34 @@ const FormControls = (props) => {
     submitFailed,
     handleDelete,
     handleClose,
+    submitButtonText,
   } = props;
 
   return (
-    <div>
-      {error &&
-      <div style={{ color: 'red' }}>
-        {error}
-      </div>}
       <div>
-        <SubmitButton
-          submitting={submitting}
-          active={!pristine && valid}
-          handleSubmit={handleSubmit}
-          submitSucceeded={submitSucceeded}
-          submitFailed={submitFailed}
-        />
-        {handleClose &&
-        <Button onClick={handleClose}>
-          <CloseIcon /> Close
-        </Button>}
-        {handleDelete &&
-        <Button onClick={handleDelete}>
-          <DeleteIcon /> Delete
-        </Button>}
+        {error &&
+        <div style={{ color: 'red' }}>
+          {error}
+        </div>}
+        <div>
+          <SubmitButton
+              submitting={submitting}
+              active={!pristine && valid}
+              handleSubmit={handleSubmit}
+              submitSucceeded={submitSucceeded}
+              submitFailed={submitFailed}
+              submitButtonText={submitButtonText}
+          />
+          {handleClose &&
+          <Button onClick={handleClose}>
+            <CloseIcon /> Close
+          </Button>}
+          {handleDelete &&
+          <Button onClick={handleDelete}>
+            <DeleteIcon /> Delete
+          </Button>}
+        </div>
       </div>
-    </div>
   );
 };
 

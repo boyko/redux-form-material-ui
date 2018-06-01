@@ -1,6 +1,6 @@
 {
   "name": "redux-form-material-ui",
-  "version": "5.0.0-beta.6",
+  "version": "5.0.0-beta.7",
   "description": "An adapter between Redux Form and Material UI components",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -9,7 +9,7 @@
     "url": "https://github.com/erikras/redux-form-material-ui"
   },
   "scripts": {
-    "build": "npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production && npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/redux-form-material-ui.js",

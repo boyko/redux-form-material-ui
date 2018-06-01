@@ -52,7 +52,7 @@ const FormControls = (props) => {
               handleSubmit={handleSubmit}
               submitSucceeded={submitSucceeded}
               submitFailed={submitFailed}
-              submitButtonText={submitButtonText}
+              text={submitButtonText}
           />
           {handleClose &&
           <Button onClick={handleClose}>

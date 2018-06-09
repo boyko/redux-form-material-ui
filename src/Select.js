@@ -1,13 +1,13 @@
-import Select from '@material-ui/core/Select'
-import createComponent from './createComponent'
-import mapError from './mapError'
+import Select from '@material-ui/core/Select';
+import createComponent from './createComponent';
+import mapError from './mapError';
 
 export default createComponent(Select, ({
-  input: { onChange, value, onBlur, ...inputProps },
-  onChange: onChangeFromField,
-  defaultValue,
-  ...props
-}) => ({
+                                          input: { onChange, value, onBlur, ...inputProps },
+                                          onChange: onChangeFromField,
+                                          defaultValue,
+                                          ...props
+                                        }) => ({
   ...mapError(props),
   ...inputProps,
   value: value,
@@ -17,5 +17,5 @@ export default createComponent(Select, ({
       onChangeFromField(event.target.value);
     }
   },
-  onBlur: () => onBlur(value)
-}))
+  onBlur: () => onBlur(value),
+}));

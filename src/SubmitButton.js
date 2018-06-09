@@ -74,6 +74,7 @@ const SubmitButton = (props: Props) => {
     submitSucceeded,
     submitFailed,
     submitting,
+    active,
     text,
   } = props;
   const buttonClassname = cn({
@@ -88,7 +89,7 @@ const SubmitButton = (props: Props) => {
               variant="raised"
               color="primary"
               className={buttonClassname}
-              disabled={submitting}
+              disabled={!active}
               onClick={handleSubmit}
           >
             {submitSucceeded ? <CheckIcon /> : <SaveIcon />} {text}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Select from 'react-select';
+import AsyncSelect from 'react-select/lib/Async';
 
 class MuiReactSelectAutocomplete extends React.Component {
   render() {
@@ -25,33 +25,33 @@ class MuiReactSelectAutocomplete extends React.Component {
     } = this.props;
 
     return (
-      <TextField
-        classes={classes}
-        onChange={onChange}
-        placeholder={placeholder}
-        InputProps={{
-          inputComponent: Select,
-          inputProps: {
-            classes,
-            value,
-            optionComponent,
-            valueComponent,
-            clearRenderer,
-            arrowRenderer,
-            noResultsText,
-            // onBlur: event => onBlur(event, event.target.value),
-            name: 'react-select-single',
-            instanceId: 'react-select-single',
-            simpleValue: true,
-            multi,
-            clearable,
-            joinValues: true, // Due to bug with react-select refs
-            options,
-            ...rest,
-          },
-        }}
-        {...textFieldProps}
-      />
+        <TextField
+            classes={classes}
+            onChange={onChange}
+            placeholder={placeholder}
+            InputProps={{
+              inputComponent: AsyncSelect,
+              inputProps: {
+                classes,
+                value,
+                optionComponent,
+                valueComponent,
+                clearRenderer,
+                arrowRenderer,
+                noResultsText,
+                // onBlur: event => onBlur(event, event.target.value),
+                name: 'react-select-single',
+                instanceId: 'react-select-single',
+                simpleValue: true,
+                multi,
+                clearable,
+                joinValues: true, // Due to bug with react-select refs
+                options,
+                ...rest,
+              },
+            }}
+            {...textFieldProps}
+        />
     );
   }
 }
